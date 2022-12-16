@@ -27,7 +27,7 @@ function setTitleAndDescription() {
 
     const div = document.createElement("div");
     div.classList.add("w-full", "bg-gray-50", "dark:bg-white/5", "p-6", "rounded-md", "mb-16", "border");
-    div.textContent = "With ChatGPT Advanced you can augment your prompts with relevant web search results for better and up-to-date answers.";
+    div.textContent = "有了ChatGPT Advanced，您可以用相关的网络搜索结果来增强您的提示，以获得更好的、最新的答案。";
     title.parentNode.insertBefore(div, title.nextSibling);
 
 }
@@ -45,7 +45,7 @@ function showErrorMessage(e) {
     console.log(e);
     var errorDiv = document.createElement("div");
     errorDiv.classList.add("chatgpt-adv-error", "absolute", "bottom-0", "right-1", "text-white", "bg-red-500", "p-4", "rounded-lg", "mb-4", "mr-4", "text-sm");
-    errorDiv.innerHTML = "<b>An error occurred</b><br>" + e + "<br><br>Check the console for more details.";
+    errorDiv.innerHTML = "<b>有错误发生</b><br>" + e + "<br><br>请检查控制台了解详情。";
     document.body.appendChild(errorDiv);
     setTimeout(() => { errorDiv.remove(); }, 5000);
 }
@@ -86,11 +86,11 @@ function onSubmit(event) {
                 .then(response => response.json())
                 .then(results => {
                     let counter = 1;
-                    let formattedResults = "Web search results:\n\n";
-                    formattedResults = formattedResults + results.reduce((acc, result) => acc += `[${counter++}] "${result.body}"\nSource: ${result.href}\n\n`, "");
+                    let formattedResults = "网络搜索结果: \n\n";
+                    formattedResults = formattedResults + results.reduce((acc, result) => acc += `[${counter++}] "${result.body}"\n来源: ${result.href}\n\n`, "");
 
-                    formattedResults = formattedResults + `\nCurrent date: ${new Date().toLocaleDateString()}`;
-                    formattedResults = formattedResults + `\nInstructions: Using the provided web search results, write a comprehensive reply to the given prompt. Make sure to cite results using [[number](URL)] notation after the reference. If the provided search results refer to multiple subjects with the same name, write separate answers for each subject.\nPrompt: ${query}`;
+                    formattedResults = formattedResults + `\n当前日期: ${new Date().toLocaleDateString()}`;
+                    formattedResults = formattedResults + `\n说明: 使用所提供的网络搜索结果，对给定的提示词写一个全面的答复。 确保在参考文献后使用 [[number](URL)] 的符号来引用结果。 如果所提供的搜索结果涉及到具有相同名称的多个主题，请为每个主题分别写出单独的答案。\n提示词:  ${query}`;
 
                     textarea.value = formattedResults;
 
@@ -116,7 +116,7 @@ toolbarDiv.style.padding = "0em 0.5em 0em 0.5em";
 
 // Web access switch
 var toggleWebAccessDiv = document.createElement("div");
-toggleWebAccessDiv.innerHTML = '<label class="chatgpt-adv-toggle"><input class="chatgpt-adv-toggle-checkbox" type="checkbox"><div class="chatgpt-adv-toggle-switch"></div><span class="chatgpt-adv-toggle-label">Search on the web</span></label>';
+toggleWebAccessDiv.innerHTML = '<label class="chatgpt-adv-toggle"><input class="chatgpt-adv-toggle-checkbox" type="checkbox"><div class="chatgpt-adv-toggle-switch"></div><span class="chatgpt-adv-toggle-label">在网络上查询</span></label>';
 toggleWebAccessDiv.classList.add("chatgpt-adv-toggle-web-access");
 chrome.storage.sync.get("web_access", (data) => {
     toggleWebAccessDiv.querySelector(".chatgpt-adv-toggle-checkbox").checked = data.web_access;
@@ -138,14 +138,14 @@ var optionsDiv = document.createElement("div");
 optionsDiv.classList.add("p-4", "space-y-2");
 
 var title = document.createElement("h4");
-title.innerHTML = "Advanced Options";
+title.innerHTML = "Advanced 选项";
 title.classList.add("pb-4", "text-lg", "font-bold");
 
 var divNumResultsSlider = document.createElement("div");
 divNumResultsSlider.classList.add("flex", "justify-between");
 
 var label = document.createElement("label");
-label.innerHTML = "Web results";
+label.innerHTML = "搜索结果";
 
 var value = document.createElement("span");
 chrome.storage.sync.get("num_web_results", (data) => {
@@ -173,17 +173,17 @@ numResultsSlider.oninput = function () {
 };
 
 var timePeriodLabel = document.createElement("label");
-timePeriodLabel.innerHTML = "Results from:";
+timePeriodLabel.innerHTML = "结果来自：";
 
 var timePeriodDropdown = document.createElement("select");
 timePeriodDropdown.classList.add("ml-0", "bg-gray-900", "border", "w-full");
 
 var timePeriodOptions = [
-    { value: "", label: "Any time" },
-    { value: "d", label: "Past day" },
-    { value: "w", label: "Past week" },
-    { value: "m", label: "Past month" },
-    { value: "y", label: "Past year" }
+    { value: "", label: "任何时间" },
+    { value: "d", label: "过去一天" },
+    { value: "w", label: "过去一周" },
+    { value: "m", label: "过去一月" },
+    { value: "y", label: "过去一年" }
 ];
 
 timePeriodOptions.forEach(function (option) {
@@ -226,7 +226,7 @@ var emptyDiv = document.createElement("div");
 emptyDiv.classList.add("p-4");
 
 var supportMe = document.createElement("a");
-supportMe.innerHTML = "Like the extension?<br>Please consider <span class='underline'><a href='https://www.buymeacoffee.com/anzorq' target='_blank'>supporting me</a></span>";
+supportMe.innerHTML = "喜欢这个扩展吗？<br>请考虑<span class='underline'><a href='https://www.buymeacoffee.com/anzorq' target='_blank'>支持作者</a></span>";
 supportMe.classList.add("text-sm", "text-gray-500");
 
 

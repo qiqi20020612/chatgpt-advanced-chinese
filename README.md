@@ -1,3 +1,8 @@
+# ChatGPT Advanced 汉化
+[Github]: https://github.com/qunash/chatgpt-advanced
+原项目
+[<img valign="middle" src="https://badgen.net/badge/icon/Github?icon=github&label=chatgpt-advanced">][Github]
+
 # ChatGPT Advanced
 
 This chrome extension adds web access capability to the [ChatGPT](https://chat.openai.com/) webapp. Get much more relevant and up-to-date answers from the bot!
